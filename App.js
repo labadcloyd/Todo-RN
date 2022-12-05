@@ -52,9 +52,10 @@ export default function App() {
         <View style={styles.input_container}>
           <TextInput
             style={styles.text_input}
-            value={currentTodo}
             onChangeText={setCurrentTodo}
-          />
+            autoCorrect={false}>
+            {currentTodo}
+          </TextInput>
           <Button title='Add Todo' onPress={addTodo} />
         </View>
       </View>
