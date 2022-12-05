@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   Button,
   FlatList,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -31,7 +32,11 @@ export default function App() {
 
   function TodoItem({ item }) {
     return (
-      <View style={[styles.flat_list_item, styles.shadow_prop]}>
+      <Pressable
+        onPress={() => console.log(item)}
+        style={({ pressed }) =>
+          pressed ? styles.pressed_flat_list_item : styles.flat_list_item
+        }>
         <View style={styles.flat_list_text}>
           <Text>{item.value}</Text>
         </View>
@@ -42,7 +47,7 @@ export default function App() {
             onPress={() => removeTodo(item)}
           />
         </View>
-      </View>
+      </Pressable>
     );
   }
   return (
@@ -119,6 +124,15 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 10,
     backgroundColor: "white",
+    borderRadius: 10,
+  },
+  pressed_flat_list_item: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    padding: 10,
+    backgroundColor: "black",
     borderRadius: 10,
   },
   shadow_prop: {
